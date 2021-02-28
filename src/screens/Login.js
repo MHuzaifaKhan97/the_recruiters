@@ -60,7 +60,6 @@ class Login extends Component {
                                         showSpinner: false,
                                         email: '',
                                         password: '',
-                                        // loginAs: ' '
                                     })
                                 }, 2500);
                                 return <View><Spinner color='3597cc' /></View>
@@ -72,8 +71,6 @@ class Login extends Component {
                             })
                     }
                     else {
-                        // Alert.alert('Error',"Username or Password is incorrect");
-                        // return;
                     }
                 }
             })
@@ -91,15 +88,15 @@ class Login extends Component {
                     <View style={styles.loginBody}>
                         <Image source={require('../assets/logo.png')} style={styles.logo} />
                         <Text style={styles.bodyTitle}>SIGN IN</Text>
-                        <ScrollView style={{width:'100%',height:'100%'}}>
+                        <ScrollView style={{ width: '100%', height: '100%' }}>
                             <Item floatingLabel style={{ marginTop: 10 }}>
                                 <Label style={{ color: '#3597cc' }}>Enter Email</Label>
-                                <Input value={email} maxLength={30} keyboardType="email-address" onChangeText={(text) => this.setState({ email: text })} />
+                                <Input style={{color:'#3597cc'}} value={email} maxLength={30} keyboardType="email-address" onChangeText={(text) => this.setState({ email: text })} />
                             </Item>
-                         
+
                             <Item floatingLabel style={{ marginTop: 10 }}>
                                 <Label style={{ color: '#3597cc' }}>Enter Password...</Label>
-                                <Input value={password} maxLength={25} onChangeText={(text) => this.setState({ password: text })} secureTextEntry={!isPasswordShown} />
+                                <Input style={{color:'#3597cc'}} value={password} maxLength={25} onChangeText={(text) => this.setState({ password: text })} secureTextEntry={!isPasswordShown} />
                                 <Icon active solid={true} name={isPasswordShown ? "eye-slash" : "eye"} type='FontAwesome5' style={{ color: '#3597cc', fontSize: 16 }} onPress={this.showHidePassword} />
                             </Item>
                             <DropDownPicker
@@ -147,12 +144,12 @@ class Login extends Component {
 
                             </View>
 
-                <View style={styles.footer}>
-                    <Text>Don't have an account? </Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} >
-                        <Text style={{ color: '#ffa929', fontWeight: 'bold' }}>Register</Text>
-                    </TouchableOpacity>
-                </View>
+                            <View style={styles.footer}>
+                                <Text>Don't have an account? </Text>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} >
+                                    <Text style={{ color: '#ffa929', fontWeight: 'bold' }}>Register</Text>
+                                </TouchableOpacity>
+                            </View>
                         </ScrollView>
 
                     </View>
@@ -185,7 +182,7 @@ const styles = StyleSheet.create({
     },
     loginBody: {
         width: '80%',
-        height:'100%',
+        height: '100%',
         alignItems: 'flex-start',
     },
     bodyTitle: {
@@ -201,6 +198,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:'20%'
+        marginTop: '20%'
     }
 })

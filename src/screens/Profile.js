@@ -16,6 +16,7 @@ class Profile extends Component {
         loggedInUser: {},
         authUser: {},
         isDataLoaded: false,
+        appliedCompanies:[]
     }
     componentDidMount() {
         auth().onAuthStateChanged((user) => {
@@ -31,7 +32,11 @@ class Profile extends Component {
                     }
                 })
                 setTimeout(() => {
-                    this.setState({ isDataLoaded: true });
+                    this.setState({
+                        isDataLoaded: true,
+                    });
+                    this.changeData();
+
                 }, 1200);
             } else {
                 this.props.navigation.navigate('_____________________________', { screen: 'Login' })
@@ -40,9 +45,55 @@ class Profile extends Component {
         })
     }
 
+    changeData = () => {
+        const { name, email, password, contactNo , loggedInUser, appliedCompanies} = this.state;
+        this.setState({
+            name: loggedInUser.name,
+            email:loggedInUser.email,
+            contactNo:loggedInUser.contactNo,
+            password:loggedInUser.password
+        })
+    }
 
     updateProfile = () => {
+        const { loggedInUser } = this.state;
 
+        if (loggedInUser.registerAs == "company") {
+            database().ref('users').child(loggedInUser.id).set({
+                id: loggedInUser.id,
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                contactNo: this.state.contactNo,
+                companyName: loggedInUser.companyName,
+                designation: loggedInUser.designation,
+                photoURL: loggedInUser.photoURL,
+                registerAs: loggedInUser.registerAs
+            }).then(() => {
+                Alert.alert("Success", "Successfully Update");
+            }).catch((err) => {
+                Alert.alert("Error", err.msg);
+            })
+        }
+        else if (loggedInUser.registerAs == "student") {
+            database().ref('users').child(loggedInUser.id).set({
+                id: loggedInUser.id,
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                contactNo: this.state.contactNo,
+                universityName: loggedInUser.universityName,
+                lastDegree: loggedInUser.lastDegree,
+                photoURL: loggedInUser.photoURL,
+                registerAs: loggedInUser.registerAs,
+                appliedCompanies:loggedInUser.appliedCompanies,
+            }).then(() => {
+                Alert.alert("Success", "Successfully Update");
+            }).catch((err) => {
+                Alert.alert("Error", err.msg);
+            })
+        }
+        // console.log(loggedInUser.id)
     }
     render() {
         const { isPasswordShown, name, email, password, contactNo, loggedInUser, isDataLoaded } = this.state;
@@ -66,16 +117,16 @@ class Profile extends Component {
                                 ></Image>
                             </View>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.name : ''} maxLength={30} onChangeText={(text) => this.setState({ name: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? name : ''} maxLength={30} onChangeText={(text) => this.setState({ name: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.email : ''} maxLength={30} onChangeText={(text) => this.setState({ email: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? email : ''} maxLength={30} disabled={true} onChangeText={(text) => this.setState({ email: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.password : ''} maxLength={30} onChangeText={(text) => this.setState({ password: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? password : ''} maxLength={30} onChangeText={(text) => this.setState({ password: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.contactNo : ''} maxLength={30} onChangeText={(text) => this.setState({ contactNo: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? contactNo : ''} maxLength={30} onChangeText={(text) => this.setState({ contactNo: text })} />
                             </Item>
 
 

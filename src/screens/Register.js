@@ -18,7 +18,8 @@ class Register extends Component {
         contactNo: '',
         universityName: '',
         lastDegree: '',
-        photoURL: ''
+        photoURL: '',
+        appliedCompanies: [""]
     }
 
 
@@ -37,7 +38,7 @@ class Register extends Component {
         console.log('Clicked');
     }
     createUser = () => {
-        const { name, email, password, registerAs, photoURL, contactNo, companyName, designation, universityName, lastDegree } = this.state;
+        const { name, email, appliedCompanies, password, registerAs, photoURL, contactNo, companyName, designation, universityName, lastDegree } = this.state;
         let id = database().ref("users").push().key;
         if (name == "") {
             Alert.alert('Error', 'Please Enter Your Name',);
@@ -66,6 +67,7 @@ class Register extends Component {
                     lastDegree,
                     contactNo,
                     photoURL,
+                    appliedCompanies,
                 }
             }
             else if (registerAs == 'company') {
@@ -79,6 +81,7 @@ class Register extends Component {
                     designation,
                     contactNo,
                     photoURL,
+                    // appliedCompanies,
                 }
             }
             console.log(user);
@@ -90,52 +93,8 @@ class Register extends Component {
                 }).catch((error) => {
                     Alert.alert('Error', error.message);
                 })
-            // this.setState({
-            //     name: '',
-            //     email: '',
-            //     password: '',
-            //     registerAs: ' ',
-            //     companyName: '',
-            //     designation: '',
-            //     photoURL: '',
-            //     universityName: '',
-            //     lastDegree: ''
-            // })
 
         }
-
-        // else {
-        //     if (password.length <= 8) {
-        //         Alert.alert('Error', 'Weak Password');
-        //     }
-        //     else if (contactNo.length != 11) {
-        //         Alert.alert('Error', 'Invalid Contact Number');
-        //     }
-        //     else {
-        //         auth().createUserWithEmailAndPassword(email, password)
-        //             .then((response) => {
-        //                 database().ref(`users/${id}`).set({
-        //                     id: id,
-        //                     name: name,
-        //                     email: email,
-        //                     password: password,
-        //                     contactNo: contactNo,
-        //                     photoURL: '',
-        //                 });
-        //                 Alert.alert('Success', 'Successfully User Created.');
-        //                 this.props.navigation.navigate('Home');
-        //             }).catch((error) => {
-        //                 Alert.alert('Error', error.message);
-        //             })
-        //         this.setState({
-        //             name: '',
-        //             email: '',
-        //             password: '',
-        //             contactNo: '',
-        //         })
-
-        //     }
-        // }
     }
 
     render() {

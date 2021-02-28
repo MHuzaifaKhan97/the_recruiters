@@ -4,39 +4,15 @@ import { Card, CardItem, Body, Icon, Spinner } from 'native-base';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-class Home extends Component {
+class MyJobs extends Component {
 
     state = {
         showSpinner: false,
-        userInfo: [],
-        authUser: {},
-        users: [],
+        authUser: [],
         jobs: [],
-        authType: '',
-        updateUser: {}
     }
 
     componentDidMount() {
-        database().ref('jobs').once('value', (data) => {
-            let dataArr = [];
-            for (var key in data.val()) {
-                dataArr.push(data.val()[key]);
-            }
-            this.setState({
-                jobs: dataArr
-            })
-        })
-
-        database().ref('users').once('value', (data) => {
-            let dataArr = [];
-            for (var key in data.val()) {
-                dataArr.push(data.val()[key]);
-                // }
-            }
-            this.setState({
-                users: dataArr
-            })
-        })
 
         auth().onAuthStateChanged((user) => {
             if (user) {
@@ -44,83 +20,31 @@ class Home extends Component {
                 database().ref('users').once('value', (data) => {
                     for (var key in data.val()) {
                         if (data.val()[key].email == user.email) {
+                            // setTimeout(() => {
                             this.setState({
-                                authType: data.val()[key].registerAs
+                                authUser: data.val()[key]?.appliedCompanies?.filter((data) => data != "")
+                            })
+                            console.log(data.val()[key])
+                            // }, 1200);
+                            this.setState({
+                                showSpinner: true
                             })
                         }
                     }
                 })
-            } else {
+            }
+
+            else {
                 this.props.navigation.navigate('_____________________________', { screen: 'Login' })
             }
-        })
 
-
-    }
-
-    applyForJob = async (job) => {
-        const { updateUser } = this.state;
-        // console.log(post);
-        auth().onAuthStateChanged((user) => {
-
-            database().ref('users').once('value', (data) => {
-                for (var key in data.val()) {
-                    if (user.email == data.val()[key].email) {
-                        this.setState({
-                            updateUser: data.val()[key]
-                        })
-                    }
-                }
-            })
-        })
-        setTimeout(() => {
-            this.update(job);
-        }, 1200);
-
-    }
-    update = (job) => {
-        const { updateUser } = this.state;
-
-        let id = updateUser.id;
-        let updatedCompanies = [];
-        updatedCompanies = [...updateUser.appliedCompanies, job];
-
-        database().ref('users').child(updateUser.id).set({
-            contactNo: updateUser.contactNo,
-            email: updateUser.email,
-            id: updateUser.id,
-            lastDegree: updateUser.lastDegree,
-            name: updateUser.name,
-            password: updateUser.password,
-            photoURL: updateUser.photoURL,
-            registerAs: updateUser.registerAs,
-            universityName: updateUser.universityName,
-            appliedCompanies: updatedCompanies
-        }).then(() => {
-            // Alert.alert("Success", "Successfully Applied for Job")
-        })
-
-        let appliedUsers = [];
-        appliedUsers = [...job.userApplies, updateUser.name];
-        database().ref('jobs').child(job.id).set({
-            id: job.id,
-            address: job.address,
-            amount: job.amount,
-            companyName: job.companyName,
-            experience: job.experience,
-            jobAddedByName: job.jobAddedByName,
-            jobAddedByEmail: job.jobAddedByEmail,
-            qualification: job.qualification,
-            title: job.title,
-            userApplies: appliedUsers,
-
-        }).then(() => {
-            Alert.alert("Success", "Successfully Applied for Job")
         })
     }
 
     render() {
-        const { jobs, showSpinner, authType, updateUser } = this.state;
+        const { authUser } = this.state;
+        console.log("authUser")
+        console.log(authUser)
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor="transparent" />
@@ -133,11 +57,12 @@ class Home extends Component {
                 <View style={styles.body}>
                     <View style={styles.loginBody}>
 
+                        <Text style={styles.bodyTitle}>MY APPLEID JOBS</Text>
 
                         <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '85%' }}>
                             {
-                                jobs.map((job) => {
-                                    return <TouchableOpacity key={job.id} style={styles.homes}>
+                                authUser ? authUser.map((job, key) => {
+                                    return <TouchableOpacity key={key} style={styles.homes}>
 
                                         <Card style={{ padding: 10, elevation: 10 }}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
@@ -161,13 +86,7 @@ class Home extends Component {
                                                 <Text style={styles.homesTitle}>{job ? job.jobAddedByName : ''}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5 }}>
-                                                {
-                                                    authType == 'student' ? <TouchableOpacity onPress={() => this.applyForJob(job)} style={{ width: '50%', height: 40, backgroundColor: '#3597cc', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
-                                                        <Text style={{ color: '#fff', fontWeight: 'bold' }} >Apply</Text>
-                                                    </TouchableOpacity>
-                                                        :
-                                                        <View />
-                                                }
+
 
                                             </View>
                                         </Card>
@@ -175,20 +94,17 @@ class Home extends Component {
 
                                     </TouchableOpacity>
 
-
                                 })
+                                    : <Spinner color="#ffa929" />
                             }
 
 
                         </ScrollView>
 
-                        {
-                            authType == 'company' || authType == 'admin' ?
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('_____________________________', { screen: 'AddJob' })} style={styles.jobAddButton} >
-                                    <Icon style={{ fontSize: 30, color: '#fff' }} type="MaterialIcons" name="insert-invitation" />
-                                </TouchableOpacity>
-                                : <View />
-                        }
+
+
+
+
                     </View>
                 </View>
             </View>
@@ -196,7 +112,8 @@ class Home extends Component {
     }
 }
 
-export default Home;
+
+export default MyJobs;
 
 const styles = StyleSheet.create({
     container: {
@@ -233,12 +150,10 @@ const styles = StyleSheet.create({
         marginTop: '5%',
         marginBottom: '5%',
         fontWeight: '700',
-        fontSize: 30,
+        fontSize: 24,
         alignItems: 'center',
         color: '#3597cc',
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: -1, height: 1 },
-        textShadowRadius: 8,
+
     },
     homes: {
         // backgroundColor:'#fff',

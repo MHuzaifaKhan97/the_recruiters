@@ -76,28 +76,6 @@ class Recruiter extends Component {
                     <Text style={styles.homesTitle}>{comp ? comp.contactNo:''}</Text>
                 </View>
                  
-                {/*
-                <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', margin: 5 }}>
-                    <Text style={styles.homeother}>{job ? job.address:''}</Text>
-                    <Text style={styles.homeother}>{job ? `${job.experience} Years`:''}</Text>
-                    <Text style={styles.homeother}>{job ? job.qualification:''}</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
-                    <Text style={styles.homesTitle}>{job ? job.date:''}</Text>
-                    <Image width={40} height={40} source={{ uri: 'https://attiehandassociates.co.za/wp-content/uploads/2014/08/Profile-Pic-Demo.png' }} />
-                    <Text style={styles.homesTitle}>{job ? job.jobAddedByName:''}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5 }}>
-                    {
-                        false ? <TouchableOpacity onPress={() => { }} style={{ width: '50%', height: 40, backgroundColor: '#3597cc', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
-                            <Text style={{ color: '#fff', fontWeight: 'bold' }} >Apply</Text>
-                        </TouchableOpacity>
-                            :
-                            <View />
-                    }
-
-                </View> */}
             </Card>
 
 

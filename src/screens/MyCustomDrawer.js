@@ -18,6 +18,7 @@ import Recruiter from './Recruiter';
 import Student from './Student';
 import AddJob from './AddJob';
 import Splash from './Splash';
+import MyJobs from './MyJobs';
 import OnBoarding from './OnBoarding';
 
 
@@ -123,6 +124,15 @@ const AppDrawer = ({ props }) => {
                   ),
                 }}
               />
+               <Drawer.Screen
+                name="MyJobs"
+                component={MyJobs}
+                options={{
+                  drawerIcon: ({ focused, color, size }) => (
+                    <Icon name="briefcase" type="FontAwesome" style={{ fontSize: size, color: '#fff' }} />
+                  ),
+                }}
+              />
 
               <Drawer.Screen
                 name="Recruiter"
@@ -208,26 +218,7 @@ const AppDrawer = ({ props }) => {
                 }}
                 initialRouteName="Splash"
               >
-                {/* <Drawer.Screen
-                  name="Profile"
-                  component={Profile}
-                  options={{
-                    drawerIcon: ({ focused, color, size }) => (
-                      <Icon type="FontAwesome" name="briefcase" style={{ fontSize: size, color: '#fff' }} />
-                    ),
-                  }}
-                />
-                <Drawer.Screen
-                  name="Home"
-                  component={Home}
-                  options={{
-                    drawerIcon: ({ focused, color, size }) => (
-                      <Icon name="home" style={{ fontSize: size, color: '#fff' }} />
-                    ),
-                  }}
-                /> */}
-
-
+        
                 <Drawer.Screen
                   name="_____________________________"
                   component={Root2}
@@ -248,11 +239,13 @@ const Stack = createStackNavigator();
 function Root2() {
   return (
     <Stack.Navigator initialRouteName="Splash">
-      <Stack.Screen name="OnBoarding" options={{ headerShown: false }} component={OnBoarding} />
       <Stack.Screen name="Splash" options={{ headerShown: false }} component={Splash} />
+      <Stack.Screen name="OnBoarding" options={{ headerShown: false }} component={OnBoarding} />
       <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
       <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />
       <Stack.Screen name="AddJob" options={{ headerShown: false }} component={AddJob} />
+      <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} />
+      <Stack.Screen name="MyJobs" options={{ headerShown: false }} component={MyJobs} />
     </Stack.Navigator>
   );
 }

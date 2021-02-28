@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Animated,
     Image,
@@ -9,14 +9,10 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-
-// constants
 import { images, theme } from "../constants";
 const { onboarding1, onboarding2, onboarding3 } = images;
-
-// theme
+import auth from '@react-native-firebase/auth';
 const { COLORS, FONTS, SIZES } = theme;
-
 const onBoardings = [
     {
         title: "Let's Join Us",
@@ -40,13 +36,17 @@ const OnBoarding = ({ navigation }) => {
 
     const scrollX = new Animated.Value(0);
 
-    React.useEffect(() => {
+    useEffect(() => {
+        auth().onAuthStateChanged((user) => {
+            if (user) {
+                navigation.navigate('Home');
+            }
+        })
         scrollX.addListener(({ value }) => {
             if (Math.floor(value / SIZES.width) === onBoardings.length - 1) {
                 setCompleted(true);
             }
         });
-
         return () => scrollX.removeListener();
     }, []);
 

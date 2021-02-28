@@ -6,22 +6,18 @@ import {
 } from "@react-navigation/drawer";
 import {
     Body,
-    Button,
     Container,
     Content,
-    Footer,
     H3,
     Header,
     Icon,
     Left,
-    List,
     ListItem,
     Right,
-    Switch,
     Text,
     Thumbnail
 } from "native-base";
-import { AsyncStorageStatic, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import Animated from "react-native-reanimated";
 import { DrawerActions } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -46,15 +42,12 @@ function SideBar({ progress, ...props }) {
                 database().ref('users').once('value', (data) => {
                     for (var key in data.val()) {
                         if (data.val()[key].email.toLowerCase() === user.email.toLowerCase()) {
-                            // setTimeout(() => {
                             setAuthUser(data.val()[key])
-                            // }, 1200);
                         }
                     }
                 })
             }
         })
-        // console.log(authUser);
     }, [])
 
     return (

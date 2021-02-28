@@ -4,7 +4,6 @@ import { Title, Input, Item, Body, Label, Icon, Textarea } from 'native-base';
 import MyIcon from 'react-native-vector-icons/FontAwesome';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-import { add } from 'react-native-reanimated';
 
 class AddJob extends Component {
 
@@ -18,7 +17,8 @@ class AddJob extends Component {
         qualification: '',
         date: '',
         jobAddedByEmail: '',
-        jobAddedByName: ''
+        jobAddedByName: '',
+        userApplies:[""],
 
     }
     componentDidMount() {
@@ -40,7 +40,7 @@ class AddJob extends Component {
     }
     addjob = () => {
 
-        const { title, amount, companyName, address, experience, qualification, authUser } = this.state;
+        const { title, amount, companyName, address, experience, qualification, authUser, userApplies} = this.state;
         let id = database().ref("users").push().key;
 
         if (title == "") {
@@ -74,6 +74,7 @@ class AddJob extends Component {
                 jobAddedByEmail: authUser.email,
                 date:today,
                 jobAddedByName: authUser.name,
+                userApplies:userApplies,
             }).then(() => {
                 Alert.alert('Success', 'Successfully job Added.');
                 this.props.navigation.navigate('Home');
