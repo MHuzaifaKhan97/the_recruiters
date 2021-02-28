@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553275662819",
+    "project_id": "therecruiters",
+    "storage_bucket": "therecruiters.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553275662819:android:72daee7bc3f85da9e780d6",
+        "android_client_info": {
+          "package_name": "com.the_recruiters"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553275662819-i0p7gqia9hjntjq0v8be9i4nq84gdqq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA-jVcjjIKMBec6YUyVQ7mmR8C7NmJpZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553275662819-i0p7gqia9hjntjq0v8be9i4nq84gdqq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

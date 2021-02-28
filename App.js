@@ -1,114 +1,49 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import MyCustomDrawer from './src/screens/MyCustomDrawer';
+import { StatusBar } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <StatusBar backgroundColor="#fff" />
+      <MyCustomDrawer />
     </>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
-export default App;
+// import * as React from 'react';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createStackNavigator } from '@react-navigation/stack';
+// // import Login from './src/screens/Login';
+// // import Register from './src/screens/Register';
+// // import Dashboard from './src/screens/DashBoard';
+// // import Profile from './src/screens/Profile';
+// // import DonorList from './src/screens/DonorList';
+// // import AddDonor from './src/screens/AddDonor';
+// // import Donor from './src/screens/Donor';
+// // import Splash from './src/screens/Splash';
+// import OnBoarding from './src/screens/OnBoarding';
+// import Login from './src/screens/Login';
+// import Register from './src/screens/Register';
+// // import {Provider} from 'react-redux';
+// // import store from './src/store';
+
+// const Stack = createStackNavigator();
+
+// function App() {
+//   return (
+//     // <Provider store={store}>
+//     <NavigationContainer>
+//       <Stack.Navigator>
+//         <Stack.Screen options={{ headerShown: false }} name="Register" component={Register} />
+//         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+//         <Stack.Screen options={{ headerShown: false }} name="Onboarding" component={OnBoarding} />
+
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//     // </Provider>
+//   );
+// }
+
+// export default App;
