@@ -149,7 +149,7 @@ class Login extends Component {
 
                 <View style={styles.footer}>
                     <Text>Don't have an account? </Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Splash')} >
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} >
                         <Text style={{ color: '#ffa929', fontWeight: 'bold' }}>Register</Text>
                     </TouchableOpacity>
                 </View>

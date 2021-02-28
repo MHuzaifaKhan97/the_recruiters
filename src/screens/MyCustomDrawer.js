@@ -18,6 +18,7 @@ import Recruiter from './Recruiter';
 import Student from './Student';
 import AddJob from './AddJob';
 import Splash from './Splash';
+import OnBoarding from './OnBoarding';
 
 
 const Drawer = createDrawerNavigator();
@@ -207,7 +208,7 @@ const AppDrawer = ({ props }) => {
                 }}
                 initialRouteName="Splash"
               >
-                <Drawer.Screen
+                {/* <Drawer.Screen
                   name="Profile"
                   component={Profile}
                   options={{
@@ -224,7 +225,7 @@ const AppDrawer = ({ props }) => {
                       <Icon name="home" style={{ fontSize: size, color: '#fff' }} />
                     ),
                   }}
-                />
+                /> */}
 
 
                 <Drawer.Screen
@@ -247,6 +248,7 @@ const Stack = createStackNavigator();
 function Root2() {
   return (
     <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen name="OnBoarding" options={{ headerShown: false }} component={OnBoarding} />
       <Stack.Screen name="Splash" options={{ headerShown: false }} component={Splash} />
       <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
       <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />

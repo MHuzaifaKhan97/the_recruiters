@@ -19,23 +19,23 @@ const { COLORS, FONTS, SIZES } = theme;
 
 const onBoardings = [
     {
-        title: "Let's Travelling",
+        title: "Let's Join Us",
         description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
         img: onboarding1
     },
     {
-        title: "Navigation",
+        title: "We Have Best Companies",
         description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
         img: onboarding2
     },
     {
-        title: "Destination",
+        title: "Join Us",
         description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
         img: onboarding3
     }
 ];
 
-const OnBoarding = ({navigation}) => {
+const OnBoarding = ({ navigation }) => {
     const [completed, setCompleted] = React.useState(false);
 
     const scrollX = new Animated.Value(0);
@@ -111,30 +111,35 @@ const OnBoarding = ({navigation}) => {
                             </Text>
                         </View>
                         {/* Button */}
-                        <TouchableOpacity
-                            style={{
-                                position: 'absolute',
-                                right: 0,
-                                bottom: 0,
-                                width: 150,
-                                height: 60,
-                                paddingLeft: 20,
-                                justifyContent: 'center',
-                                borderTopLeftRadius: 30,
-                                borderBottomLeftRadius: 30,
-                                borderBottomRightRadius: 0,
-                                borderTopRightRadius: 0,
-                                backgroundColor: COLORS.blue
-                            }}
-                            onPress={() => { 
-                                console.log("Button on pressed") 
-                                if(completed){
-                                    navigation.navigate('Login');
-                                }
+
+                        {
+                            completed && <TouchableOpacity
+                                style={{
+                                    position: 'absolute',
+                                    right: 0,
+                                    bottom: 0,
+                                    width: 150,
+                                    height: 60,
+                                    paddingLeft: 20,
+                                    justifyContent: 'center',
+                                    borderTopLeftRadius: 30,
+                                    borderBottomLeftRadius: 30,
+                                    borderBottomRightRadius: 0,
+                                    borderTopRightRadius: 0,
+                                    backgroundColor: '#ffa929'
                                 }}
-                        >
-                            <Text style={{ ...FONTS.h1, color: COLORS.white }}>{completed ? "Let's Go" : "Skip"}</Text>
-                        </TouchableOpacity>
+                                onPress={() => {
+                                    console.log("Button on pressed")
+                                    if (completed) {
+                                        navigation.navigate('Login');
+                                    }
+                                }}
+                            >
+                                <Text style={{ ...FONTS.h1, color: COLORS.white }}>{completed ? "Let's Go" : "Skip"}</Text>
+                            </TouchableOpacity>
+
+
+                        }
                     </View>
                 ))}
             </Animated.ScrollView>

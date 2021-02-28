@@ -30,14 +30,17 @@ class Profile extends Component {
                         }
                     }
                 })
+                setTimeout(() => {
+                    this.setState({ isDataLoaded: true });
+                }, 1200);
+            } else {
+                this.props.navigation.navigate('_____________________________', { screen: 'Login' })
             }
-            setTimeout(() => {
-                this.setState({ isDataLoaded: true });
-            }, 1200);
+
         })
     }
 
-    
+
     updateProfile = () => {
 
     }
@@ -54,8 +57,8 @@ class Profile extends Component {
                 </View>
 
                 {
-                    isDataLoaded ? 
-                    <View style={styles.loginBody}>
+                    isDataLoaded ?
+                        <View style={styles.loginBody}>
                             <View>
                                 <Image
                                     source={require('../assets/profile.png')}
@@ -63,18 +66,18 @@ class Profile extends Component {
                                 ></Image>
                             </View>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser? loggedInUser.name:''} maxLength={30} onChangeText={(text) => this.setState({ name: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.name : ''} maxLength={30} onChangeText={(text) => this.setState({ name: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser? loggedInUser.email:''} maxLength={30} onChangeText={(text) => this.setState({ email: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.email : ''} maxLength={30} onChangeText={(text) => this.setState({ email: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser? loggedInUser.password:''} maxLength={30} onChangeText={(text) => this.setState({ password: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.password : ''} maxLength={30} onChangeText={(text) => this.setState({ password: text })} />
                             </Item>
                             <Item regular style={{ marginTop: '5%', borderRadius: 10, borderColor: '#3597cc', borderWidth: 2 }}>
-                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser? loggedInUser.contactNo:''} maxLength={30} onChangeText={(text) => this.setState({ contactNo: text })} />
+                                <Input style={{ color: '#3597cc', backgroundColor: 'white', borderRadius: 10, fontWeight: '700', fontSize: 18 }} value={loggedInUser ? loggedInUser.contactNo : ''} maxLength={30} onChangeText={(text) => this.setState({ contactNo: text })} />
                             </Item>
-                          
+
 
                             <TouchableOpacity style={{
                                 backgroundColor: '#ffa929',
@@ -88,18 +91,18 @@ class Profile extends Component {
                                 onPress={this.updateProfile}
                             >
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Icon name="edit" type="FontAwesome" size={15} style={{ marginTop: 3,color:'#fff',fontSize:15 }} />
+                                    <Icon name="edit" type="FontAwesome" size={15} style={{ marginTop: 3, color: '#fff', fontSize: 15 }} />
                                     <Text style={{ marginLeft: 8, color: '#fff', fontSize: 15, fontWeight: '700' }}>
                                         UPDATE PROFILE
                                     </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
-                     
-                            :
-                            <Spinner  color="#3597cc" />
+
+                        :
+                        <Spinner color="#3597cc" />
                 }
-             
+
             </View>
 
 
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
         fontFamily: 'monospace',
         flex: 1,
         // justifyContent: 'space-between',
-        alignItems:'center'
+        alignItems: 'center'
     },
     header: {
         flex: 0.15,
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         backgroundColor: '#3597cc',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         borderTopStartRadius: 45,
         borderTopEndRadius: 45,
         shadowColor: "#000",
@@ -151,9 +154,9 @@ const styles = StyleSheet.create({
     loginBody: {
         width: '80%',
         alignItems: 'center',
-        marginTop:'15%'
+        marginTop: '15%'
     },
-   
+
 
     optionsButton: {
         width: '90%',
