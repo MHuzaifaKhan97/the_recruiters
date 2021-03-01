@@ -20,6 +20,9 @@ import AddJob from './AddJob';
 import Splash from './Splash';
 import MyJobs from './MyJobs';
 import OnBoarding from './OnBoarding';
+import MyJobPosts from './MyJobPosts';
+
+import { StatusBar } from 'react-native';
 
 
 const Drawer = createDrawerNavigator();
@@ -77,6 +80,16 @@ const AppDrawer = ({ props }) => {
             />
 
             <Drawer.Screen
+              name="MyJobPosts"
+              component={MyJobPosts}
+              options={{
+                drawerIcon: ({ focused, color, size }) => (
+                  <Icon name="users" type="FontAwesome" style={{ fontSize: size, color: '#fff' }} />
+                ),
+              }}
+            />
+
+            <Drawer.Screen
               name="Student"
               component={Student}
               options={{
@@ -124,7 +137,7 @@ const AppDrawer = ({ props }) => {
                   ),
                 }}
               />
-               <Drawer.Screen
+              <Drawer.Screen
                 name="MyJobs"
                 component={MyJobs}
                 options={{
@@ -218,7 +231,7 @@ const AppDrawer = ({ props }) => {
                 }}
                 initialRouteName="Splash"
               >
-        
+
                 <Drawer.Screen
                   name="_____________________________"
                   component={Root2}
@@ -246,6 +259,8 @@ function Root2() {
       <Stack.Screen name="AddJob" options={{ headerShown: false }} component={AddJob} />
       <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} />
       <Stack.Screen name="MyJobs" options={{ headerShown: false }} component={MyJobs} />
+      <Stack.Screen name="MyJobPosts" options={{ headerShown: false }} component={MyJobPosts} />
+
     </Stack.Navigator>
   );
 }

@@ -103,7 +103,7 @@ class Register extends Component {
         return (
             <>
                 <View style={styles.container}>
-                    <StatusBar backgroundColor="#fff" />
+                    <StatusBar backgroundColor="#fff" barStyle="dark-content" />
                     <View style={styles.body}>
                         <View style={styles.loginBody}>
                             <Image source={require('../assets/logo.png')} style={styles.logo} />
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     },
     footer: {
         backgroundColor: '#fff',
-        flex: 0.10,
+        flex: 0.15,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center'

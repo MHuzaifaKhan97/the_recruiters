@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, StatusBar, Animated } from 'react-native';
+import { View, Text, Image, StyleSheet, StatusBar } from 'react-native';
 
 
 class Splash extends Component {
 
-  
-    componentDidMount(){
+    componentDidMount() {
         setTimeout(() => {
             this.props.navigation.navigate('OnBoarding');
         }, 3000);
-
     }
- 
+
     render() {
-     
         return (
             <React.Fragment>
+                <StatusBar backgroundColor="#fff" barStyle="dark-content" />
                 <View style={styles.container}>
-                <StatusBar backgroundColor="#fff" />
-                   <View style={styles.topSide}>
+                    <StatusBar backgroundColor="#fff" />
+                    <View style={styles.topSide}>
                         <Image
                             source={require('../assets/logo.png')}
                             style={{ width: "90%", height: 60 }}
                         />
-                   </View>
+                    </View>
                 </View>
                 <View style={styles.developedBy}>
                     <Text style={styles.developedByText}>Developed By Huzaifa Khan</Text>
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // marginHorizontal: 40,
         justifyContent: 'center',
-        backgroundColor: '#3597cc'
+        backgroundColor: '#46a0b3'
     },
     topSide: {
         flex: 1,
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        justifyContent:'center',
+        justifyContent: 'center',
         borderBottomLeftRadius: 50,
         borderBottomRightRadius: 50,
     },
@@ -69,5 +67,5 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         marginBottom: 60
     },
-  
+
 });

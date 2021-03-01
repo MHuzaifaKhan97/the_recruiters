@@ -53,12 +53,12 @@ class Student extends Component {
 
             {
                 isDataLoaded ? 
-                <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '85%' }}>
+                <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '95%' }}>
 
 
 {
     students.map((student) => {
-        return <TouchableOpacity key={student.id} style={styles.homes}>
+        return <View key={student.id} style={styles.homes}>
 
             <Card style={{ padding: 10, elevation: 10 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
@@ -74,33 +74,11 @@ class Student extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
                     <Text style={styles.homesTitle}>{student ? student.lastDegree:''}</Text>
                 </View>
-                 
-                {/*
-                <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', margin: 5 }}>
-                    <Text style={styles.homeother}>{job ? job.address:''}</Text>
-                    <Text style={styles.homeother}>{job ? `${job.experience} Years`:''}</Text>
-                    <Text style={styles.homeother}>{job ? job.qualification:''}</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
-                    <Text style={styles.homesTitle}>{job ? job.date:''}</Text>
-                    <Image width={40} height={40} source={{ uri: 'https://attiehandassociates.co.za/wp-content/uploads/2014/08/Profile-Pic-Demo.png' }} />
-                    <Text style={styles.homesTitle}>{job ? job.jobAddedByName:''}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5 }}>
-                    {
-                        false ? <TouchableOpacity onPress={() => { }} style={{ width: '50%', height: 40, backgroundColor: '#3597cc', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
-                            <Text style={{ color: '#fff', fontWeight: 'bold' }} >Apply</Text>
-                        </TouchableOpacity>
-                            :
-                            <View />
-                    }
-
-                </View> */}
+             
             </Card>
 
 
-        </TouchableOpacity>
+        </View>
 
 
     })

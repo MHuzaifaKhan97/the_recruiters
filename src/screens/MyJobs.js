@@ -59,10 +59,10 @@ class MyJobs extends Component {
 
                         <Text style={styles.bodyTitle}>MY APPLEID JOBS</Text>
 
-                        <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '85%' }}>
+                        <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '95%' }}>
                             {
                                 authUser ? authUser.map((job, key) => {
-                                    return <TouchableOpacity key={key} style={styles.homes}>
+                                    return <View key={key} style={styles.homes}>
 
                                         <Card style={{ padding: 10, elevation: 10 }}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
@@ -87,12 +87,9 @@ class MyJobs extends Component {
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5 }}>
 
-
                                             </View>
                                         </Card>
-
-
-                                    </TouchableOpacity>
+                                    </View>
 
                                 })
                                     : <Spinner color="#ffa929" />

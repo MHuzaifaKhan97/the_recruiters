@@ -16,7 +16,7 @@ class Profile extends Component {
         loggedInUser: {},
         authUser: {},
         isDataLoaded: false,
-        appliedCompanies:[]
+        appliedCompanies: []
     }
     componentDidMount() {
         auth().onAuthStateChanged((user) => {
@@ -46,12 +46,12 @@ class Profile extends Component {
     }
 
     changeData = () => {
-        const { name, email, password, contactNo , loggedInUser, appliedCompanies} = this.state;
+        const { name, email, password, contactNo, loggedInUser, appliedCompanies } = this.state;
         this.setState({
             name: loggedInUser.name,
-            email:loggedInUser.email,
-            contactNo:loggedInUser.contactNo,
-            password:loggedInUser.password
+            email: loggedInUser.email,
+            contactNo: loggedInUser.contactNo,
+            password: loggedInUser.password
         })
     }
 
@@ -86,7 +86,7 @@ class Profile extends Component {
                 lastDegree: loggedInUser.lastDegree,
                 photoURL: loggedInUser.photoURL,
                 registerAs: loggedInUser.registerAs,
-                appliedCompanies:loggedInUser.appliedCompanies,
+                appliedCompanies: loggedInUser.appliedCompanies,
             }).then(() => {
                 Alert.alert("Success", "Successfully Update");
             }).catch((err) => {
@@ -112,7 +112,7 @@ class Profile extends Component {
                         <View style={styles.loginBody}>
                             <View>
                                 <Image
-                                    source={require('../assets/profile.png')}
+                                    source={loggedInUser.email == "huzaifanadir1997@gmail.com" ? { uri :'https://scontent.fkhi2-1.fna.fbcdn.net/v/t1.0-9/93770210_2667045100181553_949996806815612928_o.jpg?_nc_cat=111&ccb=3&_nc_sid=174925&_nc_eui2=AeFjwOj8f_lVbYFcUhsDlumOxs_eza6Tq5vGz97NrpOrmzaqHZtMuYaWFjm-4oeVVz3fQ8RRlyLx98wxfodvHLgV&_nc_ohc=NTUQzKYKlykAX8NIZVl&_nc_ht=scontent.fkhi2-1.fna&oh=1b100bd37bbc9f212ad4622dc34fd946&oe=6061915A'} : require('../assets/profile.png')}
                                     style={{ width: 100, height: 100, marginTop: 13, borderRadius: 100, borderWidth: 3, borderColor: 'white' }}
                                 ></Image>
                             </View>
@@ -168,7 +168,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         fontFamily: 'monospace',
         flex: 1,
-        // justifyContent: 'space-between',
         alignItems: 'center'
     },
     header: {
@@ -177,25 +176,12 @@ const styles = StyleSheet.create({
         marginTop: '5%',
         width: '90%',
         justifyContent: 'center',
-
     },
     body: {
-        flex: 0.85,
+        flex: 1,
         display: 'flex',
-        backgroundColor: '#3597cc',
+        backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderTopStartRadius: 45,
-        borderTopEndRadius: 45,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
     },
 
     logo: {
@@ -206,6 +192,7 @@ const styles = StyleSheet.create({
         width: '80%',
         alignItems: 'center',
         marginTop: '15%'
+
     },
 
 

@@ -52,8 +52,8 @@ function SideBar({ progress, ...props }) {
 
     return (
         <Container>
-            <StatusBar backgroundColor="#fff" />
-            <Header style={{ backgroundColor: '#3597cc' }}>
+        <StatusBar barStyle="dark-content" />
+            <Header style={{ backgroundColor: '#3597cc' }} androidStatusBarColor="#fff" >
                 <Right style={{ backgroundColor: '#3597cc' }}>
                     <TouchableOpacity style={{ backgroundColor: '#fff' }} onPress={() =>
                         props.navigation.dispatch(DrawerActions.closeDrawer())
@@ -66,7 +66,7 @@ function SideBar({ progress, ...props }) {
                 <ListItem thumbnail>
                     <Left>
                         <Thumbnail source={{
-                            uri: authUser.photoURL ? authUser.photoURL : 'https://attiehandassociates.co.za/wp-content/uploads/2014/08/Profile-Pic-Demo.png'
+                            uri: authUser.photoURL == '' && authUser.email == "huzaifanadir1997@gmail.com" ? 'https://scontent.fkhi2-1.fna.fbcdn.net/v/t1.0-9/93770210_2667045100181553_949996806815612928_o.jpg?_nc_cat=111&ccb=3&_nc_sid=174925&_nc_eui2=AeFjwOj8f_lVbYFcUhsDlumOxs_eza6Tq5vGz97NrpOrmzaqHZtMuYaWFjm-4oeVVz3fQ8RRlyLx98wxfodvHLgV&_nc_ohc=NTUQzKYKlykAX8NIZVl&_nc_ht=scontent.fkhi2-1.fna&oh=1b100bd37bbc9f212ad4622dc34fd946&oe=6061915A' : 'https://attiehandassociates.co.za/wp-content/uploads/2014/08/Profile-Pic-Demo.png'
                         }} />
                     </Left>
                     <Body>

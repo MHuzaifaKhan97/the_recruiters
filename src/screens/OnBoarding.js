@@ -9,6 +9,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
+import { StatusBar } from 'react-native';
 import { images, theme } from "../constants";
 const { onboarding1, onboarding2, onboarding3 } = images;
 import auth from '@react-native-firebase/auth';
@@ -179,6 +180,7 @@ const OnBoarding = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor="#3597cc" />
             <View>
                 {renderContent()}
             </View>

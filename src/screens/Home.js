@@ -54,12 +54,9 @@ class Home extends Component {
                 this.props.navigation.navigate('_____________________________', { screen: 'Login' })
             }
         })
-
-
     }
 
     applyForJob = async (job) => {
-        const { updateUser } = this.state;
         // console.log(post);
         auth().onAuthStateChanged((user) => {
 
@@ -98,6 +95,7 @@ class Home extends Component {
             appliedCompanies: updatedCompanies
         }).then(() => {
             // Alert.alert("Success", "Successfully Applied for Job")
+
         })
 
         let appliedUsers = [];
@@ -115,7 +113,8 @@ class Home extends Component {
             userApplies: appliedUsers,
 
         }).then(() => {
-            Alert.alert("Success", "Successfully Applied for Job")
+            Alert.alert("Success", "Successfully Applied for Job");
+
         })
     }
 
@@ -134,10 +133,10 @@ class Home extends Component {
                     <View style={styles.loginBody}>
 
 
-                        <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '85%' }}>
+                        <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', height: '95%' }}>
                             {
                                 jobs.map((job) => {
-                                    return <TouchableOpacity key={job.id} style={styles.homes}>
+                                    return <View key={job.id} style={styles.homes}>
 
                                         <Card style={{ padding: 10, elevation: 10 }}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 5 }}>
@@ -168,20 +167,13 @@ class Home extends Component {
                                                         :
                                                         <View />
                                                 }
-
                                             </View>
                                         </Card>
-
-
-                                    </TouchableOpacity>
-
-
+                                    </View>
                                 })
                             }
 
-
                         </ScrollView>
-
                         {
                             authType == 'company' || authType == 'admin' ?
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('_____________________________', { screen: 'AddJob' })} style={styles.jobAddButton} >
@@ -189,6 +181,7 @@ class Home extends Component {
                                 </TouchableOpacity>
                                 : <View />
                         }
+
                     </View>
                 </View>
             </View>
@@ -262,6 +255,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffa929',
         borderRadius: 100,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'absolute',
+        bottom: 15,
+        // left:0,
+        // right:0
     }
 })

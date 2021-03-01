@@ -83,7 +83,7 @@ class Login extends Component {
         const { isPasswordShown, email, password, showSpinner } = this.state;
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="#fff" />
+                <StatusBar backgroundColor="#fff" barStyle="dark-content" />
                 <View style={styles.body}>
                     <View style={styles.loginBody}>
                         <Image source={require('../assets/logo.png')} style={styles.logo} />
